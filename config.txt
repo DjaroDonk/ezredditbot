@@ -1,0 +1,3 @@
+subreddit=all
+type=hot
+amount=100

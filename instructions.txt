@@ -1,0 +1,4 @@
+exact="test":::reply="no"
+##lol
+keyword="blacklistme":::blacklist
+keyword="blacklistplease":::blacklistreply="yes"
