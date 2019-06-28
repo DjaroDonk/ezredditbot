@@ -1,1 +1,11 @@
+_github_example_
+client_id=??
+client_secret=??
+password=??
+user_agent=??
+username=??
 
+
+
+Sorry Mario, but your private information is in another folder.
+Normally this shouldn't be here but as this is a github example I figured I shouldn't post my password on here.

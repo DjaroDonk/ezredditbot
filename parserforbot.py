@@ -39,10 +39,14 @@ for newline in config_file:
         pass
 config["amount"]=int(config["amount"])
 
-instructions = open("privateinfo.txt","r")
+
+privateinfofile = open("privateinfo.txt","r")
+if privateinfofile.readline().strip() == "_github_example_":
+    privateinfofile = open(r"C:\Users\djaro\Desktop\Reddit_Bot\bot_reply_template\privateinfo.txt")
+privateinfofile.seek(0)
 privateinfo = {"client_id":"","client_secret":"","password":"","user_agent":"","username":""}
-for newline in config_file:
+for newline in privateinfofile:
     try:
-        config[newline.split("=")[0]] = newline.split("=")[1].strip()
+        privateinfo[newline.split("=")[0]] = newline.split("=")[1].strip()
     except:
         pass
