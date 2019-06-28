@@ -8,6 +8,7 @@ amount=[num]
 
 Instructions:
 You can add comments by prefacing them with ##
+##This is a comments
 Every line contains 2 elements:
 condition:::action
 The condition and action are split with :::
