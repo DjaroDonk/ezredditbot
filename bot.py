@@ -43,7 +43,7 @@ else:
 
 log("opened the blacklist.txt file and read it")
 
-def blacklist_person(name):
+def blacklistperson(name):
     print("blacklisted: " + name)
     log("just blacklisted" + name)
     global blacklist
@@ -79,10 +79,10 @@ def scancomment(c):
                         c.reply(instruction[3])
                     except:
                         pass
-                    replied_to(c.id)
+                    replied_to(c)
                 elif instruction[2] == 1:
                     try:
-                        blacklist(c.author.name)
+                        blacklistperson(c.author.name)
                     except:
                         pass
                 elif instruction[2] == 2:
@@ -90,11 +90,8 @@ def scancomment(c):
                         c.reply(instruction[3])
                     except:
                         pass
-                    replied_to(c.id)
-                    try:
-                        blacklist(c.author.name)
-                    except:
-                        pass
+                    replied_to(c)
+                    blacklistperson(c.author.name)
         if instruction[0] == 1:
             if re.search(instruction[1],c.body):
                 if instruction[2] == 0:
@@ -102,10 +99,10 @@ def scancomment(c):
                         c.reply(instruction[3])
                     except:
                         pass
-                    replied_to(c.id)
+                    replied_to(c)
                 elif instruction[2] == 1:
                     try:
-                        blacklist(c.author.name)
+                        blacklistperson(c.author.name)
                     except:
                         pass
                 elif instruction[2] == 2:
@@ -113,20 +110,24 @@ def scancomment(c):
                         c.reply(instruction[3])
                     except:
                         pass
-                    replied_to(c.id)
-                    try:
-                        blacklist(c.author.name)
-                    except:
-                        pass
+                    replied_to(c)
+                    blacklistperson(c.author.name)
 
+log("created the scancomment function")
 
-def scansub(subreddit,sub_type,amount):
+def scansub(whatsubreddit,sub_type,amount):
     user = the_bot.redditor(privateinfo["username"])
+    log("whatsubreddit = " + whatsubreddit)
+    log("sub_type = " + sub_type)
+    log("amount = " + str(amount))
+    log("created the user in scansub")
     threads_scanned = 0
+    log("created the threads scanned variable")
     if sub_type == "hot":
-        the_sub = reddit.subreddit(subreddit).hot(limit=amount)
+        the_sub = the_bot.subreddit(whatsubreddit).hot(limit=amount)
     elif sub_type == "new":
-        the_sub = reddit.subreddit(subreddit).new(limit=amount)
+        the_sub = the_bot.subreddit(whatsubreddit).new(limit=amount)
+    log("created the_sub")
     for submission in the_sub:
         try:
             submission.comments.replace_more()
@@ -139,15 +140,18 @@ def scansub(subreddit,sub_type,amount):
                 if is_author == 1:
                     if c.author.name == privateinfo["username"]:
                         pass
-                    elif (c.id not in comments_replied_to):
+                    elif (c.id not in comments_replied_to) and (c.author not in blacklist):
                         scancomment(c)
                 elif is_author == 0:
                     if (c.id not in comments_replied_to):
                         scancomment(c)
-            x += 1
+            threads_scanned += 1
             print("scanned a thread --- " + str(threads_scanned))
         except Exception as e:
             print(e)
-            x += 1
+            threads_scanned += 1
             print("scanned a thread --- " + str(threads_scanned))
+
+log("created the scansub function")
+scansub(config["subreddit"],config["type"],config["amount"])
 input()

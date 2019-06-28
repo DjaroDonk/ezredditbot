@@ -1,4 +1,5 @@
 exact="test":::reply="no"
-##lol
+keyword="wait":::reply="lmao"
+##lol this is a comment
 keyword="blacklistme":::blacklist
 keyword="blacklistplease":::blacklistreply="yes"
