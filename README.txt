@@ -21,7 +21,7 @@ conditions:
 	If the comment is the same as the text
 	
 	keyword="text"
-	If the comment contains the text
+	text is a regex. Tries to find the regex in the test
 
 actions:
 	reply="text"

@@ -1,9 +1,19 @@
 import re
 
+logs = True
+def log(string):
+    global logs
+    if logs == True:
+        print('#' + string)
+
+log("initialised logs")
+
 class temp_instruction:
     def __init__(self,cond,act):
         self.condition = cond
         self.action = act
+
+log("created the temp_instruction class")
 
 def parseline(line):
     line = line.split(":::")
@@ -12,6 +22,8 @@ def parseline(line):
     line[1] = re.sub(r"(_triple_colons_)(?!])",":::",line[1])
     line[1] = re.sub(r"\[_triple_colons_\]","_triple_colons_",line[1])
     return(temp_instruction(line[0],line[1]))
+
+log("created the parse line function")
 
 def parseinstruction(instr):
     condition = instr.condition.split("=")
@@ -24,11 +36,15 @@ def parseinstruction(instr):
     instruct = condition+action
     return instruct
 
+log("created the parseinstruction function")
+
 instructions = open("instructions.txt","r")
 instr_list = []
 for newline in instructions:
     if not newline.startswith("##"):
         instr_list.append(parseinstruction(parseline(newline.strip())))
+
+log("parsed the instructions")
 
 config_file = open("config.txt","r")
 config = {"subreddit":"all","type":"hot","amount":200}
@@ -39,6 +55,7 @@ for newline in config_file:
         pass
 config["amount"]=int(config["amount"])
 
+log("created the config file")
 
 privateinfofile = open("privateinfo.txt","r")
 if privateinfofile.readline().strip() == "_github_example_":
@@ -50,3 +67,6 @@ for newline in privateinfofile:
         privateinfo[newline.split("=")[0]] = newline.split("=")[1].strip()
     except:
         pass
+
+log("created the privateinfo file")
+log("the parser has completed succesfully without bugs")
