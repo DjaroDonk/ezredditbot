@@ -58,7 +58,7 @@ def replied_to(c):
     print("replying to:\n" + c.body.translate(non_bmp_map))
     global comments_replied_to
     comments_replied_to.append(c.id)
-    with open("comments_replied_to.txt","w") as f:
+    with open("comments_replied_to.txt","a") as f:
         f.write(c.id+"\n")
         f.close()
 
