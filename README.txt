@@ -1,4 +1,6 @@
-Use ezredditbot_vX.7z, where X is the highest number, it is the latest stable release
+Bots made with this tool:
+- u/says_lmao_bot
+- u/real_sarcasm_police
 
 This is a tool to allow the easy creation of reddit bots.
 There are 3 files you should edit.
