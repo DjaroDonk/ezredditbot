@@ -10,6 +10,7 @@ import praw
 import parserforbot
 import os
 import time
+import emoji
 instructions=parserforbot.instr_list
 config=parserforbot.config
 privateinfo=parserforbot.privateinfo
@@ -77,7 +78,7 @@ def scancomment(c):
             if c.body == instruction[1]:
                 if instruction[2] == 0:
                     try:
-                        c.reply(instruction[3])
+                        c.reply(emoji.emojize(instruction[3]))
                         time.sleep(3)
                     except:
                         pass
@@ -89,7 +90,7 @@ def scancomment(c):
                         pass
                 elif instruction[2] == 2:
                     try:
-                        c.reply(instruction[3])
+                        c.reply(emoji.emojize(instruction[3]))
                         time.sleep(3)
                     except:
                         pass
@@ -99,7 +100,7 @@ def scancomment(c):
             if re.search(instruction[1],c.body):
                 if instruction[2] == 0:
                     try:
-                        c.reply(instruction[3])
+                        c.reply(emoji.emojize(instruction[3]))
                         time.sleep(3)
                     except:
                         pass
@@ -111,7 +112,7 @@ def scancomment(c):
                         pass
                 elif instruction[2] == 2:
                     try:
-                        c.reply(instruction[3])
+                        c.reply(emoji.emojize(instruction[3]))
                         time.sleep(3)
                     except:
                         pass
