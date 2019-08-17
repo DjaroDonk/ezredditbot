@@ -1,6 +1,16 @@
 USE THE LATEST RELEASE. NEVER JUST TAKE THE SOURCE CODE FROM THIS PAGE, GO TO THE RELEASES PAGE TO GET IT.
 I ALWAYS IMMEDIATELY PUSH TO ORIGIN WHICH MEANS WHATEVER IS HERE CAN BE FULL OF BUGS.
 
+------------------------------------------------------------------------------------------------
+Go to this link to support me (this is 100% free for you): https://brave.com/dja011
+If you care about your privacy, I recommend using Brave Browser.
+Brave is a Chromium-based webbrowser that actually cares about your privacy.
+It has a built-in ad-blocker and tracker-blocker.
+All your bookmarks, history, settings, and other data are end-to-end encrypted which means no one can access it,
+unless you give them your sync code.
+If you use my link I receive BAT Tokens.
+-------------------------------------------------------------------------------------------------
+
 Bots made with this tool:
 - u/says_lmao_bot
 - u/real_sarcasm_police
