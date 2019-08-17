@@ -9,6 +9,7 @@ import re
 import praw
 import parserforbot
 import os
+import time
 instructions=parserforbot.instr_list
 config=parserforbot.config
 privateinfo=parserforbot.privateinfo
@@ -77,6 +78,7 @@ def scancomment(c):
                 if instruction[2] == 0:
                     try:
                         c.reply(instruction[3])
+                        time.sleep(3)
                     except:
                         pass
                     replied_to(c)
@@ -88,6 +90,7 @@ def scancomment(c):
                 elif instruction[2] == 2:
                     try:
                         c.reply(instruction[3])
+                        time.sleep(3)
                     except:
                         pass
                     replied_to(c)
@@ -97,6 +100,7 @@ def scancomment(c):
                 if instruction[2] == 0:
                     try:
                         c.reply(instruction[3])
+                        time.sleep(3)
                     except:
                         pass
                     replied_to(c)
@@ -108,6 +112,7 @@ def scancomment(c):
                 elif instruction[2] == 2:
                     try:
                         c.reply(instruction[3])
+                        time.sleep(3)
                     except:
                         pass
                     replied_to(c)
