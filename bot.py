@@ -98,25 +98,13 @@ def scancomment(c):
                         end()
                     pass
                 replied_to(c)
-            elif instruction[2] == 1 or instruction[2] == 2:
+            if instruction[2] == 1 or instruction[2] == 2:
                 try:
                     blacklistperson(c.author.name)
                 except Exception as e:
                     print(e)
                     log("place 1")
                     pass
-            elif instruction[2] == 3:
-                try:
-                    newcomment = c.reply(emoji.emojize(instruction[3]))
-                    time.sleep(5)
-                    newcomment.reply(emoji.emojize(instruction[4]))
-                except Exception as e:
-                    print(e)
-                    log("place 2")
-                    if "RATELIMIT" in str(e):
-                        end()
-                    pass
-                replied_to(c)
 
 log("created the scancomment function")
 
