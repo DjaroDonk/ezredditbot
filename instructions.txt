@@ -3,3 +3,5 @@ keyword="wait":::reply="lmao"
 ##lol this is a comment
 keyword="blacklistme":::blacklist
 keyword="blacklistplease":::blacklistreply="yes"
+keyword="{minecraft}":::reply="Minecraft is an open-world game developed by Mojang"|'|"For more information visit the wikipedia page"
+exact="!count":::reply="1 newlinereddit2 newlinereddit3 newlinereddit4"

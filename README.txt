@@ -1,25 +1,5 @@
-Requirements:
-
-Python 3.X (use the newest version)
-PIP
-Modules:
--PRAW
--emoji
-(You can use 'INSTALL REQUIRED MODULES.bat' for those two)
-
-
 USE THE LATEST RELEASE. NEVER JUST TAKE THE SOURCE CODE FROM THIS PAGE, GO TO THE RELEASES PAGE TO GET IT.
 I ALWAYS IMMEDIATELY PUSH TO ORIGIN WHICH MEANS WHATEVER IS HERE CAN BE FULL OF BUGS.
-
-------------------------------------------------------------------------------------------------
-Go to this link to support me (this is 100% free for you): https://brave.com/dja011
-If you care about your privacy, I recommend using Brave Browser.
-Brave is a Chromium-based webbrowser that actually cares about your privacy.
-It has a built-in ad-blocker and tracker-blocker.
-All your bookmarks, history, settings, and other data are end-to-end encrypted which means no one can access it,
-unless you give them your sync code.
-If you use my link I receive BAT Tokens.
--------------------------------------------------------------------------------------------------
 
 Bots made with this tool:
 - u/says_lmao_bot
@@ -87,7 +67,6 @@ actions:
 	
 	blacklistreply="text"
 	Replies with the text then blacklists the user from further replies
-<<<<<<< HEAD
 	
 	If you want to make a comment chain, like this:
 	User: {Minecraft}
@@ -96,5 +75,3 @@ actions:
 	
 	Split the text with |'|
 	So reply="comment"|'|"subcomment" would reply to it's own comment with subcomment
-=======
->>>>>>> 4fa323c42867fb7db187b61dd652f491d360f43c

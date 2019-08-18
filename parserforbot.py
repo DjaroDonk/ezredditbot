@@ -21,6 +21,7 @@ def parseline(line):
     line[0] = re.sub(r"\[_triple_colons_\]","_triple_colons_",line[0])
     line[1] = re.sub(r"(_triple_colons_)(?!])",":::",line[1])
     line[1] = re.sub(r"\[_triple_colons_\]","_triple_colons_",line[1])
+    line[1] = re.sub(r"newlinereddit","\n",line[1])
     return(temp_instruction(line[0],line[1]))
 
 log("created the parse line function")
@@ -32,7 +33,7 @@ def parseinstruction(instr):
     if len(action) == 1:
         action = [1]
     else:
-        action = [{"reply":0,"blacklistreply":2}[action[0]],action[1].strip('"')]
+        action = [{"reply":0,"blacklistreply":2}[action[0]],[i.strip('"') for i in action[1].split("|'|")]]
     instruct = condition+action
     return instruct
 

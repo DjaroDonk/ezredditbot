@@ -9,8 +9,8 @@ import re
 import praw
 import parserforbot
 import os
-import time
 import emoji
+import time
 instructions=parserforbot.instr_list
 config=parserforbot.config
 privateinfo=parserforbot.privateinfo
@@ -19,6 +19,11 @@ the_bot = praw.Reddit(client_id=privateinfo["client_id"],
                      password=privateinfo["password"],
                      user_agent=privateinfo["user_agent"],
                      username=privateinfo["username"])
+
+
+def end():
+    input()
+    exit()
 
 import sys
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
@@ -69,55 +74,49 @@ log("created the replied_to function")
 def scancomment(c):
     try:
         comment_author = c.author.name
+        if comment_author in blacklist:
+            return()
     except:
         pass
-    if comment_author in blacklist:
-        return()
     for instruction in instructions:
-        if instruction[0] == 0:
-            if c.body == instruction[1]:
-                if instruction[2] == 0:
-                    try:
+        if (instruction[0] == 0 and c.body.lower() == instruction[1]) or (instruction[0] == 1 and re.search(instruction[1],c.body.lower())):
+            if instruction[2] == 0 or instruction[2] == 2:
+                try:
+                    if type(instruction[3]) != list:
                         c.reply(emoji.emojize(instruction[3]))
-                        time.sleep(3)
-                    except:
-                        pass
-                    replied_to(c)
-                elif instruction[2] == 1:
-                    try:
-                        blacklistperson(c.author.name)
-                    except:
-                        pass
-                elif instruction[2] == 2:
-                    try:
-                        c.reply(emoji.emojize(instruction[3]))
-                        time.sleep(3)
-                    except:
-                        pass
-                    replied_to(c)
+                    else:
+                        current_com = c
+                        for i in instruction[3]:
+                            current_com = current_com.reply(emoji.emojize(i))
+                            log("replied to " + current_com.body)
+                            time.sleep(5)
+                    time.sleep(5)
+                except Exception as e:
+                    print(e)
+                    log("place 0")
+                    if "ratelimit" in str(e).lower():
+                        end()
+                    pass
+                replied_to(c)
+            elif instruction[2] == 1 or instruction[2] == 2:
+                try:
                     blacklistperson(c.author.name)
-        if instruction[0] == 1:
-            if re.search(instruction[1],c.body):
-                if instruction[2] == 0:
-                    try:
-                        c.reply(emoji.emojize(instruction[3]))
-                        time.sleep(3)
-                    except:
-                        pass
-                    replied_to(c)
-                elif instruction[2] == 1:
-                    try:
-                        blacklistperson(c.author.name)
-                    except:
-                        pass
-                elif instruction[2] == 2:
-                    try:
-                        c.reply(emoji.emojize(instruction[3]))
-                        time.sleep(3)
-                    except:
-                        pass
-                    replied_to(c)
-                    blacklistperson(c.author.name)
+                except Exception as e:
+                    print(e)
+                    log("place 1")
+                    pass
+            elif instruction[2] == 3:
+                try:
+                    newcomment = c.reply(emoji.emojize(instruction[3]))
+                    time.sleep(5)
+                    newcomment.reply(emoji.emojize(instruction[4]))
+                except Exception as e:
+                    print(e)
+                    log("place 2")
+                    if "RATELIMIT" in str(e):
+                        end()
+                    pass
+                replied_to(c)
 
 log("created the scancomment function")
 
@@ -155,6 +154,7 @@ def scansub(whatsubreddit,sub_type,amount):
             print("scanned a thread --- " + str(threads_scanned))
         except Exception as e:
             print(e)
+            log("place 3")
             threads_scanned += 1
             print("scanned a thread --- " + str(threads_scanned))
 
