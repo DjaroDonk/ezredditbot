@@ -62,9 +62,16 @@ condition:::action
 The condition and action are split with :::
 if you want to type ':::' in either the condition or the action, use '_triple_colons_'
 if for some weird reason you want to type "_triple_colons_" in the condition or the action, place '[]' around it (you would get '[_triple_colons_]')
+
+A newline must be written as newlinereddit
+To use emoji do :emojiname:
+Emoji names can usually be found on the internet, but sometimes it's wrong.
+In that case go to Python/Python3x/Lib/site-packages/emoji/unicode_codes.py and search for the unicode code.
+
 There are some examples in the instructions.txt
 
 conditions:
+	##MAKE CONDITIONS LOWERCASE ONLY
 	exact="text"
 	If the comment is the same as the text
 	
@@ -80,3 +87,14 @@ actions:
 	
 	blacklistreply="text"
 	Replies with the text then blacklists the user from further replies
+<<<<<<< HEAD
+	
+	If you want to make a comment chain, like this:
+	User: {Minecraft}
+	|--- Bot: Minecraft is a game with blocks .... 
+	   |---- Bot (replying to its own comment): For more info go to wikipedia
+	
+	Split the text with |'|
+	So reply="comment"|'|"subcomment" would reply to it's own comment with subcomment
+=======
+>>>>>>> 4fa323c42867fb7db187b61dd652f491d360f43c
