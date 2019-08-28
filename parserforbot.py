@@ -1,20 +1,22 @@
 import re
+#Imports Regex 
 
-logs = True
+logs = True #If it uses logs or not
+#Creates the log function
 def log(string):
     global logs
     if logs == True:
         print('#' + string)
-
 log("initialised logs")
 
+#Creates the instruction class. It has a condition (cond) and an activity (act)
 class temp_instruction:
     def __init__(self,cond,act):
         self.condition = cond
         self.action = act
-
 log("created the temp_instruction class")
 
+#Creates the parseline function. It splits the condition and the action with ':::'
 def parseline(line):
     line = line.split(":::")
     line[0] = re.sub(r"(_triple_colons_)(?!])",":::",line[0])
@@ -33,7 +35,13 @@ def parseinstruction(instr):
     if len(action) == 1:
         action = [1]
     else:
-        action = [{"reply":0,"blacklistreply":2}[action[0]],[i.strip('"') for i in action[1].split("|'|")]]
+        temp_action = action[1]
+        temp_action = temp_action.split("|'|")
+        for i in temp_action:
+            i = i.split("?'?")
+            for j in i:
+                j= = j.strip('"')
+        action = [{"reply":0,"blacklistreply":2}[action[0]],temp_action]
     instruct = condition+action
     return instruct
 
@@ -59,8 +67,6 @@ config["amount"]=int(config["amount"])
 log("created the config file")
 
 privateinfofile = open("privateinfo.txt","r")
-if privateinfofile.readline().strip() == "_github_example_":
-    privateinfofile = open(r"C:\Users\djaro\Desktop\Reddit_Bot\bot_reply_template\privateinfo.txt")
 privateinfofile.seek(0)
 privateinfo = {"client_id":"","client_secret":"","password":"","user_agent":"","username":""}
 for newline in privateinfofile:

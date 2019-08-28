@@ -11,6 +11,7 @@ import parserforbot
 import os
 import emoji
 import time
+import random
 instructions=parserforbot.instr_list
 config=parserforbot.config
 privateinfo=parserforbot.privateinfo
@@ -22,7 +23,6 @@ the_bot = praw.Reddit(client_id=privateinfo["client_id"],
 
 
 def end():
-    input()
     exit()
 
 import sys
@@ -82,14 +82,12 @@ def scancomment(c):
         if (instruction[0] == 0 and c.body.lower() == instruction[1]) or (instruction[0] == 1 and re.search(instruction[1],c.body.lower())):
             if instruction[2] == 0 or instruction[2] == 2:
                 try:
-                    if type(instruction[3]) != list:
-                        c.reply(emoji.emojize(instruction[3]))
-                    else:
-                        current_com = c
-                        for i in instruction[3]:
-                            current_com = current_com.reply(emoji.emojize(i))
-                            log("replied to " + current_com.body)
-                            time.sleep(5)
+                    current_com = c
+                    for i in instruction[3]:
+                        current_com = current_com.reply(emoji.emojize(random.choice(i)))
+                        log("replied to " + current_com.body)
+                        replied_to(current_com)
+                        time.sleep(5)
                     time.sleep(5)
                 except Exception as e:
                     print(e)
@@ -148,4 +146,3 @@ def scansub(whatsubreddit,sub_type,amount):
 
 log("created the scansub function")
 scansub(config["subreddit"],config["type"],config["amount"])
-input()
