@@ -37,11 +37,18 @@ def parseinstruction(instr):
     else:
         temp_action = action[1]
         temp_action = temp_action.split("|'|")
+        temp_action_2 = []
         for i in temp_action:
-            i = i.split("?'?")
-            for j in i:
-                j= = j.strip('"')
-        action = [{"reply":0,"blacklistreply":2}[action[0]],temp_action]
+            temp_action_3 = []
+            a = i.split("?|?")
+            b = []
+            for j in a:
+                j = j.strip('"')
+                b.append(j)
+            temp_action_3.append(b)
+            for k in temp_action_3:
+                temp_action_2.append(k)
+        action = [{"reply":0,"blacklistreply":2}[action[0]],temp_action_2]
     instruct = condition+action
     return instruct
 

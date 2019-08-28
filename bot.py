@@ -23,6 +23,7 @@ the_bot = praw.Reddit(client_id=privateinfo["client_id"],
 
 
 def end():
+    input()
     exit()
 
 import sys
@@ -83,10 +84,9 @@ def scancomment(c):
             if instruction[2] == 0 or instruction[2] == 2:
                 try:
                     current_com = c
-                    for i in instruction[3]:
+                    for i in list(instruction[3]):
                         current_com = current_com.reply(emoji.emojize(random.choice(i)))
                         log("replied to " + current_com.body)
-                        replied_to(current_com)
                         time.sleep(5)
                     time.sleep(5)
                 except Exception as e:
@@ -146,3 +146,4 @@ def scansub(whatsubreddit,sub_type,amount):
 
 log("created the scansub function")
 scansub(config["subreddit"],config["type"],config["amount"])
+input()
